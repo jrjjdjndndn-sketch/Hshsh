@@ -47,13 +47,20 @@ jobs:
           echo "--- Root project files ---"
           ls -la AndroidAIGamePlayer/ | head -20
 
+      - name: Clean Gradle cache
+        run: |
+          rm -rf ~/.gradle/caches
+          mkdir -p ~/.gradle
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
 
       - name: Build debug APK
-        run: gradle assembleDebug --stacktrace
+        run: |
+          chmod -R 755 .
+          gradle assembleDebug --stacktrace --no-daemon
         working-directory: ./AndroidAIGamePlayer
 
       - name: Upload APK
