@@ -1,0 +1,22 @@
+name: Unzip & Build Gemini 3.5 Flash
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unzip project
+        run: |
+          ZIP=$(find . -maxdepth 1 -name "*.zip" | head -n1)
+          unzip -o "$ZIP" -d extracted
+          PROJECT=$(find extracted -name "settings.gradle*" -printf '%h\n' | head -n1)
+          echo "PROJECT_DIR=$PROJECT" >> $GITHUB_ENV
+      - uses: actions/setup-java@v4
+        with: { java-version: '17', distribution: 'temurin', cache: gradle }
+      - uses: android-actions/setup-android@v3
+      - run: chmod +x $PROJECT_DIR/gradlew
+      - run: cd $PROJECT_DIR && ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GeminiGameAgent-3.5-Flash-debug
+          path: '**/app-debug.apk'
