@@ -27,14 +27,25 @@ jobs:
       - name: Accept Android SDK licenses
         run: yes | sdkmanager --licenses || true
 
-      - name: Unzip Android project
+      - name: Inspect zip contents
         run: |
           if [ ! -f "AndroidAIGamePlayer.zip" ]; then
             echo "AndroidAIGamePlayer.zip not found in repo root"
             exit 1
           fi
-          unzip -q AndroidAIGamePlayer.zip
-          ls -la AndroidAIGamePlayer
+          echo "--- Zip contents ---"
+          unzip -l AndroidAIGamePlayer.zip | head -40
+
+      - name: Unzip Android project
+        run: |
+          rm -rf AndroidAIGamePlayer
+          unzip -o -q AndroidAIGamePlayer.zip
+          echo "--- Fixing permissions ---"
+          chmod -R +rx AndroidAIGamePlayer
+          echo "--- Extracted folder list ---"
+          ls -la AndroidAIGamePlayer/
+          echo "--- Root project files ---"
+          ls -la AndroidAIGamePlayer/ | head -20
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -42,7 +53,7 @@ jobs:
           gradle-version: '8.9'
 
       - name: Build debug APK
-        run: gradle assembleDebug
+        run: gradle assembleDebug --stacktrace
         working-directory: ./AndroidAIGamePlayer
 
       - name: Upload APK
