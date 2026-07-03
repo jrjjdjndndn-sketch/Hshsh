@@ -1,0 +1,13 @@
+{
+  "_readme": "أضف روابطك هنا. كل رابط له إعداداته: name (اسم اختياري), url (إجباري), method (GET افتراضي), timeout_ms, headers (لو الموقع محتاج تسجيل دخول حط Cookie هنا), enabled (true/false)",
+  "links": [
+    {
+      "name": "مثال - موقع تجريبي",
+      "url": "https://example.com",
+      "method": "GET",
+      "timeout_ms": 20000,
+      "headers": {},
+      "enabled": true
+    }
+  ]
+}

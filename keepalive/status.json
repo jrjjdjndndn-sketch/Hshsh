@@ -1,0 +1,32 @@
+{
+  "last_run": "2026-07-03T01:07:04.226Z",
+  "links": {
+    "https://example.com": {
+      "name": "مثال - موقع تجريبي",
+      "url": "https://example.com",
+      "last": {
+        "at": "2026-07-03T01:07:04.226Z",
+        "status": "up",
+        "http_status": 200,
+        "response_time_ms": 226,
+        "error": null
+      },
+      "uptime_pct": 100,
+      "total_checks": 1,
+      "history": [
+        {
+          "at": "2026-07-03T01:07:04.226Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 226,
+          "error": null
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total": 1,
+    "up": 1,
+    "down": 0
+  }
+}
