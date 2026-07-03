@@ -1,0 +1,54 @@
+name: Keep-Alive Pinger 24/7
+
+# سيرفر مجاني على GitHub: يزور روابطك كل 5 دقائق تلقائياً حتى لو موبايلك مقفول.
+# ⚠️ انسخ هذا الملف يدوياً مرة واحدة إلى: .github/workflows/keepalive.yml
+#     (صلاحيات البوت لا تسمح له بإنشاء ملفات workflow — تعليمات كاملة في README)
+on:
+  schedule:
+    # كل 5 دقائق (أقصر فترة تسمح بها GitHub Actions)
+    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'keepalive/links.json'
+      - 'keepalive/ping.mjs'
+      - '.github/workflows/keepalive.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run pinger
+        run: node keepalive/ping.mjs
+
+      - name: Commit status
+        run: |
+          git config user.name "keepalive-bot"
+          git config user.email "keepalive-bot@users.noreply.github.com"
+          git add keepalive/status.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore(keepalive): update status [skip ci]"
+            git pull --rebase origin main || true
+            git push origin main || echo "Push failed (non-fatal)"
+          fi
