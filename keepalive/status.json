@@ -1,32 +1,82 @@
 {
-  "last_run": "2026-07-03T01:07:04.226Z",
+  "last_run": "2026-07-03T11:08:01.494Z",
   "links": {
-    "https://example.com": {
-      "name": "مثال - موقع تجريبي",
-      "url": "https://example.com",
+    "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true": {
+      "name": "AI Studio App (Preview)",
+      "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true",
       "last": {
-        "at": "2026-07-03T01:07:04.226Z",
+        "at": "2026-07-03T11:08:01.494Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 226,
-        "error": null
+        "response_time_ms": 614,
+        "error": null,
+        "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
       "total_checks": 1,
       "history": [
         {
-          "at": "2026-07-03T01:07:04.226Z",
+          "at": "2026-07-03T11:08:01.494Z",
           "status": "up",
           "http_status": 200,
-          "response_time_ms": 226,
-          "error": null
+          "response_time_ms": 614,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        }
+      ]
+    },
+    "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showAssistant=true": {
+      "name": "AI Studio App (Assistant)",
+      "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showAssistant=true",
+      "last": {
+        "at": "2026-07-03T11:08:01.494Z",
+        "status": "up",
+        "http_status": 200,
+        "response_time_ms": 493,
+        "error": null,
+        "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+      },
+      "uptime_pct": 100,
+      "total_checks": 1,
+      "history": [
+        {
+          "at": "2026-07-03T11:08:01.494Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 493,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        }
+      ]
+    },
+    "https://ai.studio/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?fullscreenApplet=true": {
+      "name": "AI Studio App (Fullscreen)",
+      "url": "https://ai.studio/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?fullscreenApplet=true",
+      "last": {
+        "at": "2026-07-03T11:08:01.494Z",
+        "status": "up",
+        "http_status": 200,
+        "response_time_ms": 504,
+        "error": null,
+        "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+      },
+      "uptime_pct": 100,
+      "total_checks": 1,
+      "history": [
+        {
+          "at": "2026-07-03T11:08:01.494Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 504,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
         }
       ]
     }
   },
   "summary": {
-    "total": 1,
-    "up": 1,
+    "total": 3,
+    "up": 3,
     "down": 0
   }
 }

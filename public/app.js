@@ -60,12 +60,15 @@ function renderLinks() {
       ? '<span class="w-3 h-3 rounded-full bg-red-500 inline-block pulse-down"></span>'
       : '<span class="w-3 h-3 rounded-full bg-slate-500 inline-block"></span>';
 
+    const noteBadge = lc && lc.note
+      ? `<span class="text-[9px] text-amber-300 bg-amber-500/10 rounded px-1.5 py-0.5 mr-1">${escapeHtml(lc.note)}</span>`
+      : '';
     const statusText = disabled
       ? '<span class="text-slate-400 font-bold text-xs">موقوف مؤقتاً</span>'
       : isUp
-      ? '<span class="text-emerald-400 font-bold text-xs">شغال ✅</span>'
+      ? `<span class="text-emerald-400 font-bold text-xs">شغال ✅</span> ${noteBadge}`
       : isDown
-      ? `<span class="text-red-400 font-bold text-xs">واقع ❌ ${lc.error ? '· ' + lc.error : ''}</span>`
+      ? `<span class="text-red-400 font-bold text-xs">واقع ❌ ${lc.error ? '· ' + escapeHtml(lc.error) : ''}</span>`
       : '<span class="text-slate-400 font-bold text-xs">في انتظار الفحص...</span>';
 
     return `
@@ -220,6 +223,7 @@ function openAddModal() {
   $('f-id').value = '';
   $('f-url').value = '';
   $('f-name').value = '';
+  $('f-keyword').value = '';
   $('f-interval').value = '5';
   $('f-timeout').value = '15000';
   $('modal').classList.remove('hidden');
@@ -232,6 +236,7 @@ function openEditModal(id) {
   $('f-id').value = l.id;
   $('f-url').value = l.url;
   $('f-name').value = l.name;
+  $('f-keyword').value = l.keyword || '';
   $('f-interval').value = String(l.interval_minutes);
   $('f-timeout').value = String(l.timeout_ms);
   $('modal').classList.remove('hidden');
@@ -251,6 +256,7 @@ async function submitLink(e) {
   const payload = {
     url: $('f-url').value.trim(),
     name: $('f-name').value.trim(),
+    keyword: $('f-keyword').value.trim(),
     interval_minutes: parseInt($('f-interval').value),
     timeout_ms: parseInt($('f-timeout').value),
   };
