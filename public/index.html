@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0f172a">
+<title>⚡ Keep-Alive Monitor — مراقبة المواقع</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+<style>
+  * { font-family: 'Cairo', sans-serif; }
+  body { background: #0f172a; -webkit-tap-highlight-color: transparent; }
+  .glass { background: rgba(30,41,59,.8); backdrop-filter: blur(12px); border: 1px solid rgba(148,163,184,.15); }
+  .pulse-up { animation: pulseUp 2s infinite; }
+  @keyframes pulseUp { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)} 50%{box-shadow:0 0 0 8px rgba(34,197,94,0)} }
+  .pulse-down { animation: pulseDown 1.2s infinite; }
+  @keyframes pulseDown { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.6)} 50%{box-shadow:0 0 0 8px rgba(239,68,68,0)} }
+  .spin-slow { animation: spin 1.5s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .slide-in { animation: slideIn .3s ease-out; }
+  @keyframes slideIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+  .preview-frame { width: 100%; height: 380px; border: 0; border-radius: 12px; background: #fff; }
+  .bar { display:inline-block; width:6px; border-radius:2px; margin-left:2px; }
+</style>
+</head>
+<body class="text-slate-100 min-h-screen pb-28">
+
+<!-- Header -->
+<header class="glass sticky top-0 z-40 px-4 py-3 flex items-center justify-between">
+  <div class="flex items-center gap-2">
+    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center">
+      <i class="fas fa-bolt text-slate-900"></i>
+    </div>
+    <div>
+      <h1 class="font-black text-base leading-tight">Keep-Alive Monitor</h1>
+      <p class="text-[10px] text-slate-400" id="last-refresh">مواقعك صاحية دايماً ⚡</p>
+    </div>
+  </div>
+  <button id="refresh-btn" onclick="loadAll(true)" class="w-10 h-10 rounded-xl glass flex items-center justify-center active:scale-90 transition">
+    <i class="fas fa-rotate text-cyan-400"></i>
+  </button>
+</header>
+
+<!-- Summary Cards -->
+<section id="summary-section" class="grid grid-cols-3 gap-2 px-4 mt-4">
+  <div class="glass rounded-2xl p-3 text-center">
+    <div class="text-2xl font-black text-cyan-400" id="sum-total">–</div>
+    <div class="text-[11px] text-slate-400">إجمالي الروابط</div>
+  </div>
+  <div class="glass rounded-2xl p-3 text-center">
+    <div class="text-2xl font-black text-emerald-400" id="sum-up">–</div>
+    <div class="text-[11px] text-slate-400">شغال ✅</div>
+  </div>
+  <div class="glass rounded-2xl p-3 text-center">
+    <div class="text-2xl font-black text-red-400" id="sum-down">–</div>
+    <div class="text-[11px] text-slate-400">واقع ❌</div>
+  </div>
+</section>
+
+<!-- Auto-ping status -->
+<section class="px-4 mt-3">
+  <div class="glass rounded-2xl px-4 py-2.5 flex items-center gap-2 text-xs">
+    <span class="relative flex h-2.5 w-2.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+    </span>
+    <span class="text-slate-300">الزيارات التلقائية شغالة من السيرفر <b class="text-emerald-400">حتى لو موبايلك مقفول</b> — كرون كل دقيقة</span>
+  </div>
+</section>
+
+<!-- Links List -->
+<main class="px-4 mt-4 space-y-3" id="links-container">
+  <div class="text-center py-10 text-slate-500"><i class="fas fa-circle-notch spin-slow text-2xl"></i><p class="mt-2 text-sm">جاري التحميل...</p></div>
+</main>
+
+<!-- Floating Add Button -->
+<button onclick="openAddModal()" id="fab-add"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-900 font-black px-6 py-3.5 rounded-full shadow-2xl shadow-cyan-500/30 active:scale-95 transition flex items-center gap-2">
+  <i class="fas fa-plus"></i> أضف رابط
+</button>
+
+<!-- Add/Edit Modal -->
+<div id="modal" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/70" onclick="closeModal()"></div>
+  <div class="absolute bottom-0 inset-x-0 glass rounded-t-3xl p-5 slide-in max-h-[90vh] overflow-y-auto">
+    <div class="w-10 h-1 bg-slate-600 rounded-full mx-auto mb-4"></div>
+    <h2 class="font-black text-lg mb-4" id="modal-title"><i class="fas fa-link text-cyan-400 ml-1"></i> أضف رابط جديد</h2>
+    <form id="link-form" onsubmit="submitLink(event)" class="space-y-3">
+      <input type="hidden" id="f-id">
+      <div>
+        <label class="text-xs text-slate-400 block mb-1">رابط الموقع *</label>
+        <input id="f-url" type="text" required placeholder="https://mysite.example.com" dir="ltr"
+          class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm focus:border-cyan-400 outline-none">
+      </div>
+      <div>
+        <label class="text-xs text-slate-400 block mb-1">اسم الرابط (اختياري)</label>
+        <input id="f-name" type="text" placeholder="موقعي الأول"
+          class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm focus:border-cyan-400 outline-none">
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">الزيارة كل (دقيقة)</label>
+          <select id="f-interval" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm outline-none">
+            <option value="1">كل دقيقة ⚡</option>
+            <option value="2">كل دقيقتين</option>
+            <option value="3">كل 3 دقائق</option>
+            <option value="5" selected>كل 5 دقائق</option>
+            <option value="10">كل 10 دقائق</option>
+            <option value="15">كل 15 دقيقة</option>
+            <option value="30">كل 30 دقيقة</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">المهلة (ثانية)</label>
+          <select id="f-timeout" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm outline-none">
+            <option value="10000">10 ثواني</option>
+            <option value="15000" selected>15 ثانية</option>
+            <option value="30000">30 ثانية</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" id="submit-btn"
+        class="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-900 font-black py-3.5 rounded-xl active:scale-95 transition">
+        <i class="fas fa-check ml-1"></i> حفظ وابدأ المراقبة
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[60] hidden glass rounded-xl px-5 py-3 text-sm font-bold shadow-2xl"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
