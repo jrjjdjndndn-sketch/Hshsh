@@ -1,11 +1,30 @@
 {
-  "_readme": "أضف روابطك هنا. كل رابط له إعداداته: name (اسم اختياري), url (إجباري), method (GET افتراضي), timeout_ms, headers (لو الموقع محتاج تسجيل دخول حط Cookie هنا), enabled (true/false)",
+  "_readme": "أضف روابطك هنا. كل رابط له إعداداته: name (اسم اختياري), url (إجباري), method (GET افتراضي), timeout_ms, headers (لو الموقع محتاج تسجيل دخول حط Cookie هنا), keyword (كلمة لازم تكون موجودة في الصفحة للتأكد إنها اشتغلت — اختياري), retries (عدد إعادات المحاولة قبل اعتبار الرابط واقع), enabled (true/false)",
   "links": [
     {
-      "name": "مثال - موقع تجريبي",
-      "url": "https://example.com",
+      "name": "AI Studio App (Preview)",
+      "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true",
       "method": "GET",
-      "timeout_ms": 20000,
+      "timeout_ms": 30000,
+      "retries": 2,
+      "headers": {},
+      "enabled": true
+    },
+    {
+      "name": "AI Studio App (Assistant)",
+      "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showAssistant=true",
+      "method": "GET",
+      "timeout_ms": 30000,
+      "retries": 2,
+      "headers": {},
+      "enabled": true
+    },
+    {
+      "name": "AI Studio App (Fullscreen)",
+      "url": "https://ai.studio/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?fullscreenApplet=true",
+      "method": "GET",
+      "timeout_ms": 30000,
+      "retries": 2,
       "headers": {},
       "enabled": true
     }

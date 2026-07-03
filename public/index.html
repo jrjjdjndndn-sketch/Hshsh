@@ -69,7 +69,7 @@
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
       <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
     </span>
-    <span class="text-slate-300">الزيارات التلقائية شغالة من السيرفر <b class="text-emerald-400">حتى لو موبايلك مقفول</b> — كرون كل دقيقة</span>
+    <span class="text-slate-300">زيارات ذكية من السيرفر <b class="text-emerald-400">حتى لو موبايلك مقفول</b> — إعادة محاولة تلقائية + وعي بتسجيل دخول جوجل</span>
   </div>
 </section>
 
@@ -100,6 +100,11 @@
       <div>
         <label class="text-xs text-slate-400 block mb-1">اسم الرابط (اختياري)</label>
         <input id="f-name" type="text" placeholder="موقعي الأول"
+          class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm focus:border-cyan-400 outline-none">
+      </div>
+      <div>
+        <label class="text-xs text-slate-400 block mb-1">كلمة تحقق داخل الصفحة (اختياري) <span class="text-slate-500">— للتأكد إن الصفحة اشتغلت فعلاً</span></label>
+        <input id="f-keyword" type="text" placeholder="مثال: كلمة موجودة في صفحة موقعك" dir="ltr"
           class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm focus:border-cyan-400 outline-none">
       </div>
       <div class="grid grid-cols-2 gap-3">

@@ -1,5 +1,8 @@
 name: Keep-Alive Pinger 24/7
 
+# سيرفر مجاني على GitHub: يزور روابطك كل 5 دقائق تلقائياً حتى لو موبايلك مقفول.
+# ⚠️ انسخ هذا الملف يدوياً مرة واحدة إلى: .github/workflows/keepalive.yml
+#     (صلاحيات البوت لا تسمح له بإنشاء ملفات workflow — تعليمات كاملة في README)
 on:
   schedule:
     # كل 5 دقائق (أقصر فترة تسمح بها GitHub Actions)
