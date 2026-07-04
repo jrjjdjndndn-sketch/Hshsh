@@ -1,20 +1,28 @@
 {
-  "last_run": "2026-07-04T07:29:51.720Z",
+  "last_run": "2026-07-04T11:57:36.077Z",
   "links": {
     "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true": {
       "name": "AI Studio App (Preview)",
       "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true",
       "last": {
-        "at": "2026-07-04T07:29:51.720Z",
+        "at": "2026-07-04T11:57:36.077Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 820,
+        "response_time_ms": 449,
         "error": null,
         "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
-      "total_checks": 5,
+      "total_checks": 6,
       "history": [
+        {
+          "at": "2026-07-04T11:57:36.077Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 449,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        },
         {
           "at": "2026-07-04T07:29:51.720Z",
           "status": "up",
@@ -61,16 +69,24 @@
       "name": "AI Studio App (Assistant)",
       "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showAssistant=true",
       "last": {
-        "at": "2026-07-04T07:29:51.720Z",
+        "at": "2026-07-04T11:57:36.077Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 621,
+        "response_time_ms": 388,
         "error": null,
         "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
-      "total_checks": 5,
+      "total_checks": 6,
       "history": [
+        {
+          "at": "2026-07-04T11:57:36.077Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 388,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        },
         {
           "at": "2026-07-04T07:29:51.720Z",
           "status": "up",
@@ -117,16 +133,24 @@
       "name": "AI Studio App (Fullscreen)",
       "url": "https://ai.studio/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?fullscreenApplet=true",
       "last": {
-        "at": "2026-07-04T07:29:51.720Z",
+        "at": "2026-07-04T11:57:36.077Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 763,
+        "response_time_ms": 406,
         "error": null,
         "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
-      "total_checks": 5,
+      "total_checks": 6,
       "history": [
+        {
+          "at": "2026-07-04T11:57:36.077Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 406,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        },
         {
           "at": "2026-07-04T07:29:51.720Z",
           "status": "up",
