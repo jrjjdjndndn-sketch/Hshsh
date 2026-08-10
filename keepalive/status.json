@@ -1,20 +1,28 @@
 {
-  "last_run": "2026-08-10T20:21:26.042Z",
+  "last_run": "2026-08-10T21:10:33.909Z",
   "links": {
     "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true": {
       "name": "AI Studio App (Preview)",
       "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showPreview=true",
       "last": {
-        "at": "2026-08-10T20:21:26.042Z",
+        "at": "2026-08-10T21:10:33.909Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 681,
+        "response_time_ms": 624,
         "error": null,
         "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
-      "total_checks": 537,
+      "total_checks": 538,
       "history": [
+        {
+          "at": "2026-08-10T21:10:33.909Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 624,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        },
         {
           "at": "2026-08-10T20:21:26.042Z",
           "status": "up",
@@ -406,14 +414,6 @@
           "response_time_ms": 505,
           "error": null,
           "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
-        },
-        {
-          "at": "2026-08-08T21:49:10.390Z",
-          "status": "up",
-          "http_status": 200,
-          "response_time_ms": 502,
-          "error": null,
-          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
         }
       ]
     },
@@ -421,16 +421,24 @@
       "name": "AI Studio App (Assistant)",
       "url": "https://aistudio.google.com/u/2/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?showAssistant=true",
       "last": {
-        "at": "2026-08-10T20:21:26.042Z",
+        "at": "2026-08-10T21:10:33.909Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 543,
+        "response_time_ms": 476,
         "error": null,
         "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
-      "total_checks": 537,
+      "total_checks": 538,
       "history": [
+        {
+          "at": "2026-08-10T21:10:33.909Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 476,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        },
         {
           "at": "2026-08-10T20:21:26.042Z",
           "status": "up",
@@ -822,14 +830,6 @@
           "response_time_ms": 435,
           "error": null,
           "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
-        },
-        {
-          "at": "2026-08-08T21:49:10.390Z",
-          "status": "up",
-          "http_status": 200,
-          "response_time_ms": 390,
-          "error": null,
-          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
         }
       ]
     },
@@ -837,16 +837,24 @@
       "name": "AI Studio App (Fullscreen)",
       "url": "https://ai.studio/apps/3b94928e-3994-41f2-a273-353e9b1a2df0?fullscreenApplet=true",
       "last": {
-        "at": "2026-08-10T20:21:26.042Z",
+        "at": "2026-08-10T21:10:33.909Z",
         "status": "up",
         "http_status": 200,
-        "response_time_ms": 940,
+        "response_time_ms": 536,
         "error": null,
         "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
       },
       "uptime_pct": 100,
-      "total_checks": 537,
+      "total_checks": 538,
       "history": [
+        {
+          "at": "2026-08-10T21:10:33.909Z",
+          "status": "up",
+          "http_status": 200,
+          "response_time_ms": 536,
+          "error": null,
+          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
+        },
         {
           "at": "2026-08-10T20:21:26.042Z",
           "status": "up",
@@ -1236,14 +1244,6 @@
           "status": "up",
           "http_status": 200,
           "response_time_ms": 467,
-          "error": null,
-          "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
-        },
-        {
-          "at": "2026-08-08T21:49:10.390Z",
-          "status": "up",
-          "http_status": 200,
-          "response_time_ms": 616,
           "error": null,
           "note": "auth-redirect (الموقع صاحٍ — يطلب تسجيل دخول)"
         }
